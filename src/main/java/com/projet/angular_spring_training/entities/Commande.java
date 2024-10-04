@@ -5,7 +5,9 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor @Getter @Setter @Builder @ToString
@@ -15,6 +17,7 @@ public class Commande implements Serializable {
     private LocalDate dateCommande;
     private TypePayment typePayment;
     private String photosPayement;
+    private int qteCommander;
     @ManyToOne
     private Produit produit;
     @ManyToOne

@@ -21,7 +21,7 @@ public class ProduitService {
     private CathegorieRepositorie cathegorieRepositorie;
     public Produit saveProduit(ProduitDTO produitDTO){
         Random random = new Random();
-        Cathegorie cathegorie = cathegorieRepositorie.findByNomCathegorie(produitDTO.getNomCathegorie());
+        Cathegorie cathegorie = cathegorieRepositorie.findByNomCategorie(produitDTO.getNomCathegorie());
 
         Produit produit1 = Produit.builder()
                 .code(UUID.randomUUID().toString())

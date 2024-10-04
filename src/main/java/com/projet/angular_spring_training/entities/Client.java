@@ -16,7 +16,8 @@ public class Client implements Serializable {
     private String nom;
     private String prenoms;
     private String adresse;
-    private String email;
+    private String region;
+    public String email;
     private String telephone;
     private String photos;
 }

@@ -10,11 +10,9 @@ import org.springframework.context.annotation.Bean;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @SpringBootApplication
 public class AngularSpringTrainingApplication {
@@ -30,11 +28,13 @@ public class AngularSpringTrainingApplication {
 										 ClientRepository clientRepository,
 										 CommandeRepository commandeRepository,
 										 LivraisonRepository livraisonRepository,
-										 LivreurRepository livreurRepository
+										 LivreurRepository livreurRepository,
+										 CathegorieRepositorie cathegorieRepositorie
 
 	){
 		return args -> {
 			Random random = new Random();
+			// create two admins
 			adminRepository.save(Admin.builder()
 							.nom("RAVOSON")
 							.prenoms("Tantelinirina")
@@ -54,7 +54,17 @@ public class AngularSpringTrainingApplication {
 					.photos("tantely.png")
 					.telephone("0346145497").build());
 
-			// creation du nouveau produit
+			// create categorie
+			Stream.of("Ambony Ambany" ,"AMbany" ,"afovoany" ,"ambany").forEach(name->{
+				cathegorieRepositorie.save(Cathegorie.builder()
+								.nomCategorie(name)
+						.build());
+			});
+
+			List<Cathegorie> cathegories = cathegorieRepositorie.findAll();
+			int indexCathegorie = cathegories.size();
+
+			// create two products
 			produitRepository.save(Produit.builder()
 							.code("CHR")
 							.designation("chaussure")
@@ -62,6 +72,10 @@ public class AngularSpringTrainingApplication {
 							.quantite(13)
 							.photos("chaussure.png")
 							.prix(20000)
+							.couleur("gris")
+							.description("arrivage")
+							.type("chaussure")
+							.cathegorie(cathegories.get(random.nextInt(indexCathegorie)))
 					.build());
 			produitRepository.save(Produit.builder()
 					.code("cs")
@@ -70,14 +84,17 @@ public class AngularSpringTrainingApplication {
 					.quantite(20)
 					.photos("chemise.png")
 					.prix(20000)
+					.couleur("noire")
+					.description("arrivage mlai")
+					.type("talon")
+					.cathegorie(cathegories.get(random.nextInt(indexCathegorie)))
 					.build());
 
-			// creation du nouveau client
+			// create two clients
 			clientRepository.save(Client.builder()
 							.nom("rasoa")
 							.prenoms("razafy")
 							.adresse("Tanambao")
-							.email("rasoa@gmail.com")
 							.telephone("0346146497")
 							.photos("rasoa.png")
 					.build());
@@ -85,15 +102,15 @@ public class AngularSpringTrainingApplication {
 					.nom("rabe")
 					.prenoms("razafy")
 					.adresse("Tanambao")
-					.email("rasoa@gmail.com")
 					.telephone("0346146497")
 					.photos("rasoa.png")
 					.build());
 
-			// creation du nouveau commande effectué par des clients
+			// create new command foreach clients
 			TypePayment[] type = TypePayment.values();
 			List<Produit> produits = produitRepository.findAll();
 			int index = produits.size();
+
 			clientRepository.findAll().forEach(client -> {
 						for (int i=0 ; i < produits.size() ; i++ ){
 							int longueur = random.nextInt(type.length);
