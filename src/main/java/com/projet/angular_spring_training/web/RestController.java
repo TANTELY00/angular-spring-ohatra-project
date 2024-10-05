@@ -67,9 +67,9 @@ public class RestController {
     }
 
     // GET ALL PRODUCT
-    @GetMapping(path = "/products")
-    public List<Produit> getProduct(){
-        return produitRepository.findAll();
+    @GetMapping(path = "/produit/{nomCathegorie}")
+    public List<Produit> getProduct(@PathVariable String nomCathegorie){
+        return produitRepository.findByCathegorieNomCategorie(nomCathegorie);
     }
 
     // GET ALL COMMANDE
