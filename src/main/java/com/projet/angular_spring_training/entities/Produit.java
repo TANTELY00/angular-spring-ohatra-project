@@ -20,6 +20,7 @@ public class Produit implements Serializable{
     private String description;
     private String couleur;
     private String photos;
+    private String pointure ;
     @ManyToOne
     private Cathegorie cathegorie;
 }

@@ -14,4 +14,5 @@ public class Cathegorie implements Serializable {
     private String nomCategorie;
     private String description;
     private String image;
-}
+
+    }

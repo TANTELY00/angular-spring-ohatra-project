@@ -36,7 +36,7 @@ public class RestController {
     private ProduitService produitService;
 
     @Autowired
-    private CathegorieRepositorie cathegorieRepositorie;
+    private CathegorieRepository cathegorieRepositorie;
 
     public RestController(AdminRepository adminRepository, ClientRepository clientRepository, CommandeRepository commandeRepository, LivraisonRepository livraisonRepository, LivreurRepository livreurRepository, ProduitRepository produitRepository) {
         this.adminRepository = adminRepository;
@@ -67,9 +67,9 @@ public class RestController {
     }
 
     // GET ALL PRODUCT
-    @GetMapping(path = "/produit/{nomCathegorie}")
-    public List<Produit> getProduct(@PathVariable String nomCathegorie){
-        return produitRepository.findByCathegorieNomCategorie(nomCathegorie);
+    @GetMapping(path = "/produit")
+    public List<Produit> getProduct(){
+        return produitRepository.findAll();
     }
 
     // GET ALL COMMANDE

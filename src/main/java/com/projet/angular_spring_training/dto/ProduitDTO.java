@@ -15,5 +15,6 @@ public class ProduitDTO {
     private String description;
     private String couleur;
     private String photos;
+    private String pointure;
     private String nomCathegorie;
 }

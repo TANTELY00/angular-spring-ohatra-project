@@ -3,7 +3,7 @@ package com.projet.angular_spring_training.services;
 import com.projet.angular_spring_training.dto.ProduitDTO;
 import com.projet.angular_spring_training.entities.Cathegorie;
 import com.projet.angular_spring_training.entities.Produit;
-import com.projet.angular_spring_training.repositories.CathegorieRepositorie;
+import com.projet.angular_spring_training.repositories.CathegorieRepository;
 import com.projet.angular_spring_training.repositories.ProduitRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class ProduitService {
     @Autowired
     private ProduitRepository produitRepository;
     @Autowired
-    private CathegorieRepositorie cathegorieRepositorie;
+    private CathegorieRepository cathegorieRepositorie;
     public Produit saveProduit(ProduitDTO produitDTO){
         Random random = new Random();
         Cathegorie cathegorie = cathegorieRepositorie.findByNomCategorie(produitDTO.getNomCathegorie());
@@ -32,6 +32,7 @@ public class ProduitService {
                 .description(produitDTO.getDescription())
                 .couleur(produitDTO.getCouleur())
                 .photos(produitDTO.getPhotos())
+                .pointure(produitDTO.getPointure())
                 .cathegorie(cathegorie)
                 .build();
         return produitRepository.save(produit1);

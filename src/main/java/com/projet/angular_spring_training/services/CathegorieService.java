@@ -1,7 +1,7 @@
 package com.projet.angular_spring_training.services;
 
 import com.projet.angular_spring_training.entities.Cathegorie;
-import com.projet.angular_spring_training.repositories.CathegorieRepositorie;
+import com.projet.angular_spring_training.repositories.CathegorieRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class CathegorieService {
     @Autowired
-    private CathegorieRepositorie cathegorieRepositorie;
+    private CathegorieRepository cathegorieRepositorie;
     public Cathegorie saveCathegorie(Cathegorie cathegorie){
        Cathegorie cathegorie1 = Cathegorie.builder()
                .nomCategorie(cathegorie.getNomCategorie())

@@ -29,7 +29,7 @@ public class AngularSpringTrainingApplication {
 										 CommandeRepository commandeRepository,
 										 LivraisonRepository livraisonRepository,
 										 LivreurRepository livreurRepository,
-										 CathegorieRepositorie cathegorieRepositorie
+										 CathegorieRepository cathegorieRepositorie
 
 	){
 		return args -> {
@@ -55,9 +55,11 @@ public class AngularSpringTrainingApplication {
 					.telephone("0346145497").build());
 
 			// create categorie
-			Stream.of("Ambony Ambany" ,"AMbany" ,"afovoany" ,"ambany").forEach(name->{
+			Stream.of("Chaussures" ,"T-shirtt" ,"Veste" ,"Pantalon").forEach(name->{
 				cathegorieRepositorie.save(Cathegorie.builder()
 								.nomCategorie(name)
+								.image(UUID.randomUUID().toString()+".png")
+								.description(UUID.randomUUID().toString())
 						.build());
 			});
 
@@ -75,6 +77,7 @@ public class AngularSpringTrainingApplication {
 							.couleur("gris")
 							.description("arrivage")
 							.type("chaussure")
+							.pointure("42")
 							.cathegorie(cathegories.get(random.nextInt(indexCathegorie)))
 					.build());
 			produitRepository.save(Produit.builder()
@@ -87,6 +90,7 @@ public class AngularSpringTrainingApplication {
 					.couleur("noire")
 					.description("arrivage mlai")
 					.type("talon")
+					.pointure("L")
 					.cathegorie(cathegories.get(random.nextInt(indexCathegorie)))
 					.build());
 
@@ -97,13 +101,17 @@ public class AngularSpringTrainingApplication {
 							.adresse("Tanambao")
 							.telephone("0346146497")
 							.photos("rasoa.png")
+							.region("Fianarantsoa")
+							.email(UUID.randomUUID().toString()+"gmail.com")
 					.build());
 			clientRepository.save(Client.builder()
 					.nom("rabe")
 					.prenoms("razafy")
-					.adresse("Tanambao")
+					.adresse("Mahamasina")
 					.telephone("0346146497")
 					.photos("rasoa.png")
+					.region("Antananarivo")
+					.email(UUID.randomUUID().toString()+"gmail.com")
 					.build());
 
 			// create new command foreach clients
