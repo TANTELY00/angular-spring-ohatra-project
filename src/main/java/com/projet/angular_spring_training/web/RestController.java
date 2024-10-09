@@ -125,4 +125,9 @@ public class RestController {
         return cathegorieRepositorie.findAll();
     }
 
+    // GET PRODUCTS BY QTE
+    @GetMapping(path = "/produitQTE")
+    public List<Produit> getProductByQte(){
+       return produitService.getProductByQte();
+    }
 }

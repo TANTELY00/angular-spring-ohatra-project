@@ -8,7 +8,10 @@ import com.projet.angular_spring_training.repositories.ProduitRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -36,5 +39,16 @@ public class ProduitService {
                 .cathegorie(cathegorie)
                 .build();
         return produitRepository.save(produit1);
+    }
+
+    public List<Produit> getProductByQte( ){
+        List<Produit> produitQTE = new ArrayList<>();
+        List<Produit> produitList =  produitRepository.findAll();
+        produitList.forEach(produit -> {
+            if (produit.getQuantite() <= 10){
+                produitQTE.add(produit);
+            }
+        });
+        return  produitQTE;
     }
 }
